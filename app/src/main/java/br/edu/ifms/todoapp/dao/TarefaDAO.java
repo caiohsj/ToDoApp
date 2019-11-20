@@ -17,19 +17,18 @@ public class TarefaDAO {
     private SQLiteDatabase db;
     private static TarefaDAO instance;
 
-    TarefaDAO(Context context) {
+    public TarefaDAO(Context context) {
         helper = new Helper(context);
     }
 
     public void addTarefa(Tarefa tarefa) {
         db = helper.getWritableDatabase();
 
-        SimpleDateFormat formatType = new SimpleDateFormat("dd/MM/yyyy");
 
         ContentValues values = new ContentValues();
         values.put("descricao", tarefa.getDescricao());
-        values.put("data", formatType.format(tarefa.getData()));
-        values.put("feito", 1);
+        values.put("data", tarefa.getData());
+        values.put("feito", 0);
 
         db.insert("tarefa", null, values);
     }
@@ -47,7 +46,6 @@ public class TarefaDAO {
             return tarefas;
         }
 
-        SimpleDateFormat formatType = new SimpleDateFormat("dd/MM/yyyy");
 
         Tarefa tarefa;
         while(cursor.moveToNext()){
@@ -55,11 +53,8 @@ public class TarefaDAO {
             tarefa.setId(cursor.getInt(0));
             tarefa.setDescricao(cursor.getString(1));
 
-            try {
-                tarefa.setData(formatType.parse(cursor.getString(2)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            tarefa.setData(cursor.getString(2));
+
 
             tarefa.setFeito(cursor.getInt(3));
 

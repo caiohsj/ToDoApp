@@ -30,8 +30,8 @@ public class Helper extends SQLiteOpenHelper {
         query.append("CREATE TABLE tarefa(");
         query.append("id INTEGER PRIMARY KEY AUTOINCREMENT,");
         query.append("descricao TEXT,");
-        query.append("data date,");
-        query.append("feito INTEGER");
+        query.append("data TEXT,");
+        query.append("feito INTEGER)");
         db.execSQL(query.toString());
     }
 }

@@ -8,16 +8,20 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/activity_form_tarefa_campo_descricao"
         android:hint="Descrição"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></EditText>
 
     <EditText
+        android:maxLength="8"
+        android:id="@+id/activity_form_tarefa_campo_data"
         android:hint="Data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></EditText>
 
     <Button
+        android:id="@+id/activity_form_tarefa_botao_salvar"
         android:text="Salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></Button>

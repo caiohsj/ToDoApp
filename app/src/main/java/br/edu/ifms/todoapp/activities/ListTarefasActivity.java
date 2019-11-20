@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import br.edu.ifms.todoapp.R;
+import br.edu.ifms.todoapp.adapters.TarefaAdapter;
+import br.edu.ifms.todoapp.dao.TarefaDAO;
 
 public class ListTarefasActivity extends AppCompatActivity {
     private FloatingActionButton botaoNovaTarefa;
+    private ListView listView;
+    private TarefaAdapter adapter;
+    private TarefaDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +28,18 @@ public class ListTarefasActivity extends AppCompatActivity {
         inicializarAcoes();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.setTarefas(dao.getTarefas());
+    }
+
     private void inicializarRefencias() {
         botaoNovaTarefa = findViewById(R.id.activity_list_tarefas_botao_nova_tarefa);
+        listView = findViewById(R.id.activity_list_tarefas_list_view);
+        adapter = new TarefaAdapter(this);
+        dao = new TarefaDAO(getBaseContext());
+        listView.setAdapter(adapter);
     }
 
     private void inicializarAcoes() {

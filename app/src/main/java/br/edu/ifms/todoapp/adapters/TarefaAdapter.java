@@ -22,7 +22,7 @@ public class TarefaAdapter extends BaseAdapter {
         this.tarefas = tarefas;
     }
 
-    TarefaAdapter(AppCompatActivity activity) {
+    public TarefaAdapter(AppCompatActivity activity) {
         this.activity = activity;
         this.tarefas = new ArrayList<Tarefa>();
     }
@@ -45,15 +45,14 @@ public class TarefaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = activity.getLayoutInflater().inflate(R.layout.activity_list_tarefas_item, parent, false);
-        SimpleDateFormat formatType = new SimpleDateFormat("dd/MM/yyyy");
 
         TextView campoDescricao = view.findViewById(R.id.activity_list_tarefas_item_campo_descricao);
         TextView campoData = view.findViewById(R.id.activity_list_tarefas_item_campo_data);
 
         Tarefa tarefa = tarefas.get(position);
 
-        campoDescricao.setText("ID: "+tarefa.getId()+" "+tarefa.getDescricao());
-        campoData.setText(formatType.format(tarefa.getData()));
+        campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
+        campoData.setText("Data "+tarefa.getData());
 
         return view;
     }
