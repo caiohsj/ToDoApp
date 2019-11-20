@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.MaskFilter;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -45,6 +47,7 @@ public class FormTarefaActivity extends AppCompatActivity {
     }
 
     private void inicializarAcoes(){
+        campoData.setText("DD/MM/AAAA");
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Platform.MaterialComponents.Light">
         <activity android:name=".activities.FormTarefaActivity" />
+        <activity android:name=".activities.ListTarefasItemActivity"/>
         <activity android:name=".activities.ListTarefasActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

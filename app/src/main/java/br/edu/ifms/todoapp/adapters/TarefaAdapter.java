@@ -1,5 +1,6 @@
 package br.edu.ifms.todoapp.adapters;
 
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -54,6 +55,12 @@ public class TarefaAdapter extends BaseAdapter {
         campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
         campoData.setText("Data "+tarefa.getData());
 
+        //Se a tarefa foi marcada com 'feita', então é exibida como verde
+        if(tarefa.getFeito() == 1)
+            view.setBackgroundColor(Color.parseColor("green"));
+
         return view;
     }
+
+
 }
