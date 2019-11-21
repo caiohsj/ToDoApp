@@ -8,8 +8,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import br.edu.ifms.todoapp.R;
@@ -52,12 +56,26 @@ public class TarefaAdapter extends BaseAdapter {
 
         Tarefa tarefa = tarefas.get(position);
 
+        SimpleDateFormat formatType = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date dataAtual = new Date();
+        Date dataTarefa = null;
+        try {
+            dataTarefa = formatType.parse(tarefa.getData());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
-        campoData.setText("Data "+tarefa.getData());
+        campoData.setText("Data: ("+tarefa.getData()+")");
 
         //Se a tarefa foi marcada com 'feita', então é exibida como verde
         if(tarefa.getFeito() == 1)
             view.setBackgroundColor(Color.parseColor("green"));
+
+        //Se a tarefa está atrasada
+        if(dataAtual.after(dataTarefa))
+            view.setBackgroundColor(Color.parseColor("red"));
 
         return view;
     }

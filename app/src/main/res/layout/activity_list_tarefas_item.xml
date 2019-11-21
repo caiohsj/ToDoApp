@@ -15,28 +15,20 @@
         <TextView
             android:id="@+id/activity_list_tarefas_item_campo_descricao"
             android:textSize="20sp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
 
         <TextView
             android:id="@+id/activity_list_tarefas_item_campo_data"
             android:textSize="20sp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
     </LinearLayout>
-
-    <LinearLayout
-        android:gravity="right"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/activity_list_tarefas_item_botao_feito"
             android:text="Feito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Button>
-
-    </LinearLayout>
 
 </LinearLayout>
