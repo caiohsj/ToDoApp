@@ -33,6 +33,20 @@ public class TarefaDAO {
         db.insert("tarefa", null, values);
     }
 
+    public void atualizarTarefa(Tarefa tarefa) {
+        db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id", tarefa.getId());
+        values.put("descricao", tarefa.getDescricao());
+        values.put("data", tarefa.getData());
+        values.put("feito", tarefa.getFeito());
+
+        String where[] = {String.valueOf(tarefa.getId())};
+
+        db.update("tarefa", values, "id = ?", where);
+    }
+
     public List<Tarefa> getTarefas() {
         db = helper.getWritableDatabase();
         StringBuilder query = new StringBuilder();
