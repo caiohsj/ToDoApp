@@ -23,6 +23,8 @@ import br.edu.ifms.todoapp.model.Tarefa;
 public class TarefaAdapter extends BaseAdapter {
     private List<Tarefa> tarefas;
     private AppCompatActivity activity;
+    private TextView campoDescricao;
+    private TextView campoData;
     private Button botaoFeito;
 
     public void setTarefas(List<Tarefa> tarefas) {
@@ -51,11 +53,14 @@ public class TarefaAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View view = activity.getLayoutInflater().inflate(R.layout.activity_list_tarefas_item, parent, false);
+        botaoFeito = view.findViewById(R.id.activity_list_tarefas_item_botao_feito);
+        campoDescricao = view.findViewById(R.id.activity_list_tarefas_item_campo_descricao);
+        campoData = view.findViewById(R.id.activity_list_tarefas_item_campo_data);
 
-        TextView campoDescricao = view.findViewById(R.id.activity_list_tarefas_item_campo_descricao);
-        TextView campoData = view.findViewById(R.id.activity_list_tarefas_item_campo_data);
-
+        botaoFeito.setFocusable(false);
+        botaoFeito.setClickable(false);
 
         Tarefa tarefa = tarefas.get(position);
 
@@ -72,13 +77,15 @@ public class TarefaAdapter extends BaseAdapter {
         campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
         campoData.setText("Data: ("+tarefa.getData()+")");
 
-        //Se a tarefa foi marcada com 'feita', então é exibida como verde
-        if(tarefa.getFeito() == 1)
-            view.setBackgroundColor(Color.parseColor("green"));
-
         //Se a tarefa está atrasada
         if(dataAtual.after(dataTarefa))
             view.setBackgroundColor(Color.parseColor("red"));
+
+        //Se a tarefa foi marcada com 'feita', então é exibida como verde
+        if(tarefa.getFeito() == 1) {
+            view.setBackgroundColor(Color.parseColor("green"));
+            botaoFeito.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }
