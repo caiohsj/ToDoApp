@@ -41,6 +41,7 @@ public class ListTarefasActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapter.setTarefas(dao.getTarefas());
+        listView.setAdapter(adapter);
         tarefas = dao.getTarefas();
     }
 

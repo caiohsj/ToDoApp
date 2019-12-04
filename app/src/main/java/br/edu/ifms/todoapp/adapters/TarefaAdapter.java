@@ -74,11 +74,32 @@ public class TarefaAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendarAtual = Calendar.getInstance();
+
+        calendar.setTime(dataTarefa);
+
+        int diaTarefa = calendar.get(Calendar.DAY_OF_MONTH);
+        int semanaTarefa = calendar.get(Calendar.WEEK_OF_MONTH);
+        int mesTarefa = calendar.get(Calendar.MONTH);
+        int anoTarefa = calendar.get(Calendar.YEAR);
+
+        int diaAtual = calendarAtual.get(Calendar.DAY_OF_MONTH);
+        int semanaAtual = calendarAtual.get(Calendar.WEEK_OF_MONTH);
+        int mesAtual = calendarAtual.get(Calendar.MONTH);
+        int anoAtual = calendarAtual.get(Calendar.YEAR);
+
+        int difDias = diaAtual - diaTarefa;
+
         campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
         campoData.setText("Data: ("+tarefa.getData()+")");
 
+        //Se a tarefa é para a semana atual
+        if(anoAtual == anoTarefa && mesAtual == mesTarefa && semanaAtual == semanaTarefa)
+            view.setBackgroundColor(Color.parseColor("yellow"));
+
         //Se a tarefa está atrasada
-        if(dataAtual.after(dataTarefa))
+        if(mesAtual == mesTarefa && anoAtual == anoTarefa && difDias > 0)
             view.setBackgroundColor(Color.parseColor("red"));
 
         //Se a tarefa foi marcada com 'feita', então é exibida como verde
