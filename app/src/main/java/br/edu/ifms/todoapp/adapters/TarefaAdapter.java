@@ -91,7 +91,24 @@ public class TarefaAdapter extends BaseAdapter {
 
         int difDias = diaAtual - diaTarefa;
 
-        campoDescricao.setText("Tarefa "+tarefa.getId()+": "+tarefa.getDescricao());
+        char[] a = tarefa.getDescricao().toCharArray();
+
+        String descricao = "";
+
+        if(a.length > 17) {
+            for (int i = 0; i < 17; i++) {
+                descricao += a[i];
+            }
+        } else {
+            for (int i = 0; i < a.length; i++) {
+                descricao += a[i];
+            }
+        }
+
+        if(a.length > 17)
+            descricao += "...";
+
+        campoDescricao.setText("Tarefa "+tarefa.getId()+": "+descricao);
         campoData.setText("Data: ("+tarefa.getData()+")");
 
         //Se a tarefa é para a semana atual
